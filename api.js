@@ -33,10 +33,13 @@ function respond(data) {
         var div = document.createElement("h2")
         var bookPic = document.createElement("img");
         var desc = document.createElement("div");
-        $(desc).attr("class", "col-9")
+        var link = document.createElement("a");
+        $(desc).attr("class", "col-6")
         $(desc).attr("id", `${'textbox-' + [i]}`)
         div.textContent = item.volumeInfo.title;
         desc.textContent = item.volumeInfo.description;
+        link.textContent = " View on Google Books"
+        $(link).attr("href", item.volumeInfo.canonicalVolumeLink)
         if (item.volumeInfo.imageLinks) {
             $(bookPic).attr('src', item.volumeInfo.imageLinks.thumbnail)
             $(bookPic).attr('class', 'col-md-3 img-fluid')
@@ -44,6 +47,7 @@ function respond(data) {
         
         bookInfo.append(div)
         bookInfo.append(desc)
+        desc.append(link)
         bookInfo.append(bookPic)
     }
 }
